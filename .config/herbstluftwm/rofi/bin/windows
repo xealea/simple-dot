@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# This script was modified by Lea based from archcraft script
+# Email: xealea@xedev.my.id
+
+DIR="$HOME/.config/herbstluftwm"
+
+rofi -no-lazy-grab -show window -theme $DIR/rofi/themes/window.rasi

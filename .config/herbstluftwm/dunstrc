@@ -1,0 +1,69 @@
+# This script was modified by Lea based from archcraft script
+# Email: xealea@xedev.my.id
+
+[global]
+monitor = 0
+follow = mouse
+width = 250
+origin = top-right
+offset = 35x35
+corner_radius = 8
+scale = 0
+notification_limit = 0
+indicate_hidden = yes
+transparency = 0
+separator_height = 4
+padding = 15
+horizontal_padding = 15
+text_icon_padding = 0
+frame_width = 0
+gap_size = 0
+separator_color = frame
+sort = yes
+idle_threshold = 120
+font = JetBrainsMono Nerd Font 10
+line_height = 4
+markup = full
+format = %s\n%b
+alignment = left
+vertical_alignment = center
+show_age_threshold = 60
+ellipsize = middle
+ignore_newline = no
+stack_duplicates = true
+hide_duplicate_count = false
+show_indicators = yes
+enable_recursive_icon_lookup = true
+icon_position = left
+min_icon_size = 24
+max_icon_size = 48
+sticky_history = yes
+history_length = 20
+browser = /usr/bin/xdg-open
+always_run_script = true
+mouse_left_click = close_current
+mouse_middle_click = do_action, close_current
+mouse_right_click = close_all
+title = Dunst
+class = Dunst
+
+[urgency_low]
+timeout = 2
+background = "#d8d8d8"
+foreground = "#1A2026"
+frame_color = "#1A2026"
+command = /usr/bin/mpg123 $HOME/Music/herta.mp3
+
+[urgency_normal]
+timeout = 5
+background = "#d8d8d8"
+foreground = "#1A2026"
+frame_color = "#1A2026"
+command = /usr/bin/mpg123 $HOME/Music/herta.mp3
+
+[urgency_critical]
+timeout = 0
+background = "#d8d8d8"
+foreground = "#1A2026"
+frame_color = "#1A2026"
+command = /usr/bin/mpg123 $HOME/Music/herta.mp3

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# This script was modified by Lea based from archcraft script
+# Email: xealea@xedev.my.id
+
+DIR="$HOME/.config/herbstluftwm"
+
+rofi \
+	-show drun \
+	-modi run,drun,ssh,window \
+	-no-lazy-grab \
+	-scroll-method 0 \
+	-drun-match-fields all \
+	-drun-display-format "{name}" \
+	-no-drun-show-actions \
+	-terminal alacritty \
+	-kb-cancel Alt-F1 \
+	-theme "$DIR"/rofi/themes/launcher.rasi

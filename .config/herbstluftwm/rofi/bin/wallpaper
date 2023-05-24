@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+# Script by Lea
+# Email: xealea@xedev.my.id
+
+# Set the wallpaper using sway/swaybg
+set_wallpaper_sway() {
+    swaybg -i "$1" -s fill
+}
+
+# Set the wallpaper using hsetroot
+set_wallpaper_hsetroot() {
+    hsetroot -full "$1"
+}
+
+# Set the wallpaper using swww
+set_wallpaper_swww() {
+    swww img --transition-type center "$1"
+}
+
+# Set the wallpaper using feh
+set_wallpaper_feh() {
+    feh --bg-fill "$1"
+}
+
+# Check if either swaybg, hsetroot, swww, or feh command is available
+for option in swaybg hsetroot swww feh; do
+    if command -v "$option" &>/dev/null; then
+        set_wallpaper_options+=("$option")
+    fi
+done
+
+# Exit if no available wallpaper options
+if [[ ${#set_wallpaper_options[@]} -eq 0 ]]; then
+    dunstify -i "$HOME/.icons/ePapirus-Dark/symbolic/status/dialog-error-symbolic.svg" "Error: No wallpaper setting commands found. Please install either swaybg, hsetroot, swww, or feh."
+    exit 1
+fi
+
+# List PNG and JPG files in the $HOME/.wall folder
+shopt -s nullglob
+wallpapers=( "$HOME/.wall"/*.{png,jpg} )
+shopt -u nullglob
+
+# Exit if no wallpapers found
+if [[ ${#wallpapers[@]} -eq 0 ]]; then
+    dunstify -i "$HOME/.icons/ePapirus-Dark/symbolic/status/dialog-error-symbolic.svg" "Error: No PNG or JPG files found in $HOME/.wall folder."
+    exit 1
+fi
+
+# Prepare wallpaper selection menu for Rofi
+menu_items=""
+for ((i=0; i<${#wallpapers[@]}; i++)); do
+    index=$((i + 1))
+    filename=$(basename "${wallpapers[$i]}")
+    menu_items+="[$index] $filename\n"
+done
+
+# Prompt for wallpaper selection using Rofi
+selected_index=$(echo -e "$menu_items" | rofi -dmenu -i -p "Select Wallpaper" -theme "$HOME/.config/herbstluftwm/rofi/themes/wallpaper.rasi" | awk '{print $1}' | tr -d '[]')
+if [[ -z "$selected_index" ]]; then
+    dunstify -i "$HOME/.icons/ePapirus-Dark/symbolic/status/dialog-error-symbolic.svg" "Error: No wallpaper selected."
+    exit 1
+fi
+
+# Get the selected wallpaper based on the index
+selected_wallpaper="${wallpapers[$selected_index - 1]}"
+
+# Prepare wallpaper setting options menu for Rofi
+set_options=""
+for ((i=0; i<${#set_wallpaper_options[@]}; i++)); do
+    index=$((i + 1))
+    option="${set_wallpaper_options[$i]}"
+    if [[ "$option" == "feh" ]]; then
+        description=" (Permanent)"
+    else
+        description=""
+    fi
+    set_options+="[$index] $option$description\n"
+done
+
+# Prompt for wallpaper setting option using Rofi
+selected_option=$(echo -e "$set_options" | rofi -dmenu -i -p "Set Wallpaper" -theme "$HOME/.config/herbstluftwm/rofi/themes/wallpaper.rasi" | awk '{print $1}' | tr -d '[]')
+if [[ -z "$selected_option" ]]; then
+    dunstify -i "$HOME/.icons/ePapirus-Dark/symbolic/status/dialog-error-symbolic.svg" "Error: No wallpaper setting option selected."
+    exit 1
+fi
+
+# Set the selected wallpaper using the chosen setting option
+selected_command="${set_wallpaper_options[$selected_option - 1]}"
+case "$selected_command" in
+    "swaybg")
+        set_wallpaper_sway "$selected_wallpaper"
+        dunstify -i "$HOME/.icons/ePapirus-Dark/symbolic/status/dialog-information-symbolic.svg" "Wallpaper set successfully using swaybg."
+        ;;
+    "hsetroot")
+        set_wallpaper_hsetroot "$selected_wallpaper"
+        dunstify -i "$HOME/.icons/ePapirus-Dark/symbolic/status/dialog-information-symbolic.svg" "Wallpaper set successfully using hsetroot."
+        ;;
+    "swww")
+        set_wallpaper_swww "$selected_wallpaper"
+        dunstify -i "$HOME/.icons/ePapirus-Dark/symbolic/status/dialog-information-symbolic.svg" "Wallpaper set successfully using swww."
+        ;;
+    "feh")
+        set_wallpaper_feh "$selected_wallpaper"
+        dunstify -i "$HOME/.icons/ePapirus-Dark/symbolic/status/dialog-information-symbolic.svg" "Wallpaper set successfully using feh. (Permanent)"
+        ;;
+esac

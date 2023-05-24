@@ -10,10 +10,10 @@
 
   <p align="center">Jika Anda ingin membaca proses instalasi dalam Bahasa Indonesia, silakan kunjungi <a href="https://github.com/xealea/simple-dot/blob/master/README-ID.md"><b>[halaman ini]</b></a>.
 
-# <p align="center">KEYBIND ⌨️
-  <p align="center">To view the keybind information for this project, please check the <a href="https://github.com/xealea/simple-dot/blob/master/README-KEYBIND.md">[README-KEYBIND.md]</a> file.
+# <p align="center">KEYBIND 💻
+  <p align="center">To view the keybind information for this project, please check the <a href="https://github.com/xealea/simple-dot/blob/master/README-KEYBIND.md">[here]</a> file.
 
-  <p align="center">Untuk melihat informasi keybind pada proyek ini, silakan periksa file <a href="https://github.com/xealea/simple-dot/blob/master/README-KEYBIND.md">[README-KEYBIND.md]</a>.
+  <p align="center">Untuk melihat informasi keybind pada proyek ini, silakan periksa file <a href="https://github.com/xealea/simple-dot/blob/master/README-KEYBIND.md">[here]</a>.
 
 # <p align="center">STARS CHART ⭐
 <p align="center">

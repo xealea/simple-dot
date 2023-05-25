@@ -31,7 +31,7 @@
   </a>
 </p>
 
-# <p align="center">Credits 💐
+# <p align="center">CREDITS 💐
   <p align="center">I include credits to show respect for the owners of the scripts and tools that I use, as not all of them originate from me.
 
   - <a href="https://github.com/elenapan">@elenapan</a>

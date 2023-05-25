@@ -91,7 +91,7 @@ read -p "Do you want to copy the dotfiles? (y/n) " confirm
 # Copy folders/files to the destination directory
 if [[ "$confirm" = "y" ]]; then
     # Copy dotfiles to the destination directory
-    rsync -a --exclude=".git" --exclude="README-ID.md" --exclude="README-EN.md" --exclude="README.md" --exclude="README-KEYBIND.md" --exclude="dotfiles_install.sh" "$destination/" "$HOME"
+    rsync -a --exclude=".git" --exclude="README-ID.md" --exclude="README-EN.md" --exclude="README.md" --exclude="README-KEYBIND.md" --exclude="PACKAGE-LIST.md" --exclude="dotfiles_install.sh" "$destination/" "$HOME"
 
     # Place the LICENSE file in $HOME/.config directory
     cp "$HOME/LICENSE" "$HOME/.config/LICENSE-SIMPLE-DOT"

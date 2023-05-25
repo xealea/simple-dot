@@ -1,0 +1,48 @@
+# Package List
+
+This list provides instructions for installing the following packages on different Linux distributions:
+
+- alacritty
+- curl
+- dconf
+- dunst
+- du
+- feh
+- fish
+- fontconfig
+- git
+- gpick
+- gtk3
+- gvfs
+- herbstluftwm
+- hsetroot
+- ksuperkey
+- kvantum
+- lightdm
+- maim
+- mpd
+- mpc
+- ncmpcpp
+- nano
+- neovim
+- nemo
+- networkmanager
+- pavucontrol
+- pamixer
+- pulseaudio
+- pulseaudio-alsa
+- pulseaudio-jack
+- qt5ct
+- ranger
+- rofi
+- rsync
+- tar
+- thunar
+- viewnior
+- wget
+- xcolor
+- xdotool
+- xsettingsd
+- xfce-polkit
+- xfce4-power-manager
+- xfce4-settings

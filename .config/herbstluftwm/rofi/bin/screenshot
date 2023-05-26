@@ -48,27 +48,18 @@ countdown() {
   done
 }
 
-# convert img with border
-convert_image_border() {
-  convert "$1" \
-    -bordercolor "#FFFFFF" -border 15x15 \
-    \( +clone -background black -shadow 80x15+0+0 \) \
-    +swap -background white -layers merge \
-    "${dir}/${file}"
-}
-
 #convert img with shadow
-convert_image_shadow() {
+convert_image() {
   convert "$1" \
-    \( +clone -background black -shadow 80x15+0+0 \) \
-    +swap -background white -layers merge \
+    \( +clone -background black -shadow 25x30+0+0 \) \
+    +swap -background '#637e92' -layers merge \
     "${dir}/${file}"
 }
 
 # take shots
 shotnow() {
   cd "$dir" && sleep 0.5 && maim -u -f png > "$temp_file"
-  convert_image_border "$temp_file"
+  convert_image "$temp_file"
   rm "$temp_file"
   notify_view
 }
@@ -76,7 +67,7 @@ shotnow() {
 shot5() {
   countdown 5
   sleep 1 && cd "$dir" && maim -u -f png > "$temp_file"
-  convert_image_border "$temp_file"
+  convert_image "$temp_file"
   rm "$temp_file"
   notify_view
 }
@@ -84,21 +75,21 @@ shot5() {
 shot10() {
   countdown 10
   sleep 1 && cd "$dir" && maim -u -f png > "$temp_file"
-  convert_image_border "$temp_file"
+  convert_image "$temp_file"
   rm "$temp_file"
   notify_view
 }
 
 shotwin() {
   cd "$dir" && maim -u -f png -i "$(xdotool getactivewindow)" > "$temp_file"
-  convert_image_shadow "$temp_file"
+  convert_image "$temp_file"
   rm "$temp_file"
   notify_view
 }
 
 shotarea() {
   cd "$dir" && maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 > "$temp_file"
-  convert_image_shadow "$temp_file"
+  convert_image "$temp_file"
   rm "$temp_file"
   notify_view
 }

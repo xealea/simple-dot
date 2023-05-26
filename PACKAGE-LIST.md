@@ -3,6 +3,7 @@
 This list provides instructions for installing the following packages on different Linux distributions:
 
 - alacritty
+- brightnessctl
 - curl
 - dconf
 - dunst

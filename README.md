@@ -31,7 +31,7 @@
   <p align="center">I include credits to show respect for the owners of the scripts and tools that I use, as not all of them originate from me.
 
   - <a href="https://github.com/elenapan">@elenapan</a>
-  - <a href="https://github.com/adi1090x">@di1090x</a>
+  - <a href="https://github.com/adi1090x">@adi1090x</a>
 
 # <p align="center">STARS CHART ⭐
 <p align="center">

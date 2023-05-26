@@ -46,3 +46,4 @@ This list provides instructions for installing the following packages on differe
 - xfce-polkit
 - xfce4-power-manager
 - xfce4-settings
+- xorg-server

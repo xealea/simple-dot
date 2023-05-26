@@ -20,10 +20,6 @@
 
   <p align="center">Untuk melihat informasi keybind pada proyek ini, silakan periksa file <a href="https://github.com/xealea/simple-dot/blob/master/README-KEYBIND.md"><b>SUSUNAN KOMBINASI KEYBOARD</b></a>.
 
-# <p align="center">STARS CHART ⭐
-<p align="center">
-  <img alt="Stars" width="100%" src="https://api.star-history.com/svg?repos=xealea/simple-dot"/>
-
 # <p align="center">CONTRIBUTORS 👥
 <p align="center">
   <a href="https://github.com/xealea/simple-dot/graphs/contributors">
@@ -37,4 +33,8 @@
   - <a href="https://github.com/elenapan">@elenapan</a>
   - <a href="https://github.com/adi1090x">@di1090x</a>
 
+# <p align="center">STARS CHART ⭐
+<p align="center">
+  <img alt="Stars" width="100%" src="https://api.star-history.com/svg?repos=xealea/simple-dot"/>
+    
 # <p align="center">THANK YOU ♥️

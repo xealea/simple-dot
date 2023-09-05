@@ -52,18 +52,18 @@ timeout = 2
 background = "#d8d8d8"
 foreground = "#1A2026"
 frame_color = "#1A2026"
-command = /usr/bin/mpg123 $HOME/Music/herta.mp3
+command = mpg123 $HOME/.config/notif/ringtone.mp3
 
 [urgency_normal]
 timeout = 5
 background = "#d8d8d8"
 foreground = "#1A2026"
 frame_color = "#1A2026"
-command = /usr/bin/mpg123 $HOME/Music/herta.mp3
+command = mpg123 $HOME/.config/notif/ringtone.mp3
 
 [urgency_critical]
 timeout = 0
 background = "#d8d8d8"
 foreground = "#1A2026"
 frame_color = "#1A2026"
-command = /usr/bin/mpg123 $HOME/Music/herta.mp3
+command = mpg123 $HOME/.config/notif/ringtone.mp3

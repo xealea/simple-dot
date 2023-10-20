@@ -1,5 +1,5 @@
 
-Net/ThemeName "amarena"
+Net/ThemeName "nord"
 Net/IconThemeName "ePapirus-Dark"
 Gtk/CursorThemeName "material-light"
 Net/EnableEventSounds "0"

@@ -15,24 +15,24 @@ decrease_volume() {
   show_notification "Volume Decreased" "$(get_volume_icon)" "$(get_volume_percentage)"
 }
 
-# Function to mute volume
-mute_volume() {
+# Function to toggle mute volume
+toggle_mute_volume() {
   pactl set-sink-mute @DEFAULT_SINK@ toggle
   if is_volume_muted; then
-    show_notification "Volume Muted" "$HOME/.icons/ePapirus-Dark/symbolic/status/audio-volume-muted-symbolic.svg" "Muted"
+    show_notification "Volume Muted" "audio-volume-muted-symbolic" "Muted"
   else
     show_notification "Volume Unmuted" "$(get_volume_icon)" "$(get_volume_percentage)"
-  fi
+  }
 }
 
 # Function to toggle microphone mute
 toggle_microphone() {
   pactl set-source-mute @DEFAULT_SOURCE@ toggle
   if is_microphone_muted; then
-    show_notification "Microphone Muted" "$HOME/.icons/ePapirus-Dark/symbolic/status/microphone-sensitivity-muted-symbolic.svg" "Muted"
+    show_notification "Microphone Muted" "microphone-sensitivity-muted-symbolic" "Muted"
   else
-    show_notification "Microphone Unmuted" "$HOME/.icons/ePapirus-Dark/symbolic/status/microphone-sensitivity-high-symbolic.svg" "Unmuted"
-  fi
+    show_notification "Microphone Unmuted" "microphone-sensitivity-high-symbolic" "Unmuted"
+  }
 }
 
 # Function to check if the volume is muted
@@ -47,7 +47,7 @@ is_microphone_muted() {
 
 # Function to show notification using Dunst
 show_notification() {
-  dunstify -a "Volume Control" -u low -r 9999 -i "$2" "$1" "$3" "$4"
+  dunstify -a "Volume Control" -u low -r 9999 -i "$2" "$1" "$3"
 }
 
 # Function to get the appropriate volume icon
@@ -55,19 +55,19 @@ get_volume_icon() {
   if is_volume_muted; then
     echo "audio-volume-muted-symbolic"
   else
-    volume=$(pactl list sinks | grep 'Volume:' | head -n 1 | awk '{print $5}')
+    volume=$(pactl list sinks | grep 'Volume:' | head -n 1 | awk '{print $5}' | tr -d '%')
     if (( volume >= 90 )); then
-      echo "$HOME/.icons/ePapirus-Dark/symbolic/status/audio-volume-high-symbolic.svg"
+      echo "audio-volume-high-symbolic"
     elif (( volume >= 70 )); then
-      echo "$HOME/.icons/ePapirus-Dark/symbolic/status/audio-volume-high-symbolic.svg"
+      echo "audio-volume-high-symbolic"
     elif (( volume >= 50 )); then
-      echo "$HOME/.icons/ePapirus-Dark/symbolic/status/audio-volume-medium-symbolic.svg"
+      echo "audio-volume-medium-symbolic"
     elif (( volume >= 30 )); then
-      echo "$HOME/.icons/ePapirus-Dark/symbolic/status/audio-volume-medium-symbolic.svg"
+      echo "audio-volume-medium-symbolic"
     elif (( volume >= 10 )); then
-      echo "$HOME/.icons/ePapirus-Dark/symbolic/status/audio-volume-low-symbolic.svg"
+      echo "audio-volume-low-symbolic"
     else
-      echo "$HOME/.icons/ePapirus-Dark/symbolic/status/audio-volume-muted-symbolic.svg"
+      echo "audio-volume-muted-symbolic"
     fi
   }
 }
@@ -86,7 +86,7 @@ case "$1" in
     decrease_volume
     ;;
   --mute)
-    mute_volume
+    toggle_mute_volume
     ;;
   --microphone)
     toggle_microphone

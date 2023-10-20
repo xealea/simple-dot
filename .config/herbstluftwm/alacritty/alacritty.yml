@@ -7,7 +7,7 @@
 
 ## Import files (Colors, Fonts, Etc)
 import:
-  - ~/.config/herbstluftwm/alacritty/scheme/amarena.yml
+  - ~/.config/herbstluftwm/alacritty/colors.yml
   - ~/.config/herbstluftwm/alacritty/fonts.yml
 
 ## Set environment variables

@@ -113,23 +113,8 @@ if [[ "$confirm" = "y" ]]; then
     echo "glyph-font.tar.xz deleted."
     echo ""
 
-    # Prompt to install gtk
-    read -p "Do you want to install all theme (2)? ( y/n ( default is nord ) ) " gtk
-    
     # Extract GTK theme from $HOME/.themes directory
-    echo "Extracting 1 GTK theme..."
-    tar -xf "$HOME/.themes/nord-gtk.tar.xz" -C "$HOME/.themes"
-
-    echo "GTK theme extracted."
-
-    # Remove the tar.xz file
-    rm "$HOME/.themes/nord-gtk.tar.xz"
-    echo "nord-gtk.tar.xz deleted."
-    echo ""
-
-   if [[ "$gtk" = "y" ]]; then
-    # Extract GTK theme from $HOME/.themes directory
-    echo "Extracting 2 GTK theme..."
+    echo "Extracting GTK theme..."
     tar -xf "$HOME/.themes/amarena-gtk.tar.xz" -C "$HOME/.themes"
 
     echo "GTK theme extracted."
@@ -138,7 +123,6 @@ if [[ "$confirm" = "y" ]]; then
     rm "$HOME/.themes/amarena-gtk.tar.xz"
     echo "amarena-gtk.tar.xz deleted."
     echo ""
-  fi
 
     # Extract icons from $HOME/.icons directory
     echo "Extracting icons..."
@@ -160,9 +144,13 @@ if [[ "$confirm" = "y" ]]; then
     fi
     echo ""
 
-    # Set shell to fish shell
-    echo "Setting the shell to fish shell..."
-    chsh -s "$(command -v fish)"
+    # Prompt to refresh font cache
+    read -p "Do you want to change the shell? (y/n) " shell
+    if [[ "$shell" = "y" ]]; then
+        # Set shell to fish shell
+        echo "Setting the shell to fish shell..."
+        chsh -s "$(command -v fish)"
+    fi
 
     echo "Installation completed!"
 else

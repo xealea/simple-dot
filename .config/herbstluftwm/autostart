@@ -173,6 +173,7 @@ hc keybind $Mod-space                                                           
 ## Window rules ----------------------------------------------#
 
 hc unrule -F
+hc rule index=e
 hc rule focus=on # normally focus new clients
 hc rule floatplacement=smart
 

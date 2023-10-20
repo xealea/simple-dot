@@ -31,5 +31,9 @@ herbst_scripts=~/.config/herbstluftwm/bin
 herbdunst="$herbst_scripts/herbdunst.sh"
 $herbdunst &
 
+# Automatic lockscreen
+herbxlock="$herbst_scripts/herbxss.sh"
+$herbxlock &
+
 # Start mpd
 exec mpd &

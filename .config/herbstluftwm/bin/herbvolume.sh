@@ -37,12 +37,12 @@ toggle_microphone() {
 
 # Function to check if the volume is muted
 is_volume_muted() {
-  [[ $(pamixer --get-mute) == "true" ]]
+  [[ $(pactl list sinks | grep 'Mute: yes') ]]
 }
 
 # Function to check if the microphone is muted
 is_microphone_muted() {
-  [[ $(pamixer --get-source-mute @DEFAULT_SOURCE@) == "true" ]]
+  [[ $(pactl list sources | grep 'Mute: yes') ]]
 }
 
 # Function to show notification using Dunst
@@ -55,7 +55,7 @@ get_volume_icon() {
   if is_volume_muted; then
     echo "audio-volume-muted-symbolic"
   else
-    volume=$(pamixer --get-volume)
+    volume=$(pactl list sinks | grep 'Volume:' | head -n 1 | awk '{print $5}')
     if (( volume >= 90 )); then
       echo "$HOME/.icons/ePapirus-Dark/symbolic/status/audio-volume-high-symbolic.svg"
     elif (( volume >= 70 )); then
@@ -69,12 +69,12 @@ get_volume_icon() {
     else
       echo "$HOME/.icons/ePapirus-Dark/symbolic/status/audio-volume-muted-symbolic.svg"
     fi
-  fi
+  }
 }
 
 # Function to get the volume percentage
 get_volume_percentage() {
-  pamixer --get-volume-human
+  pactl list sinks | grep 'Volume:' | head -n 1 | awk '{print $5}'
 }
 
 # Parse the script arguments

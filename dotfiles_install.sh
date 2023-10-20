@@ -114,7 +114,7 @@ if [[ "$confirm" = "y" ]]; then
     echo ""
 
     # Prompt to install gtk
-    read -p "Do you want to install all theme (2)? ( y/n ( default is nord ) )" gtk
+    read -p "Do you want to install all theme (2)? ( y/n ( default is nord ) ) " gtk
     
     # Extract GTK theme from $HOME/.themes directory
     echo "Extracting 1 GTK theme..."

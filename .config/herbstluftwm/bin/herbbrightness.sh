@@ -5,13 +5,27 @@
 
 # Function to increase brightness
 increase_brightness() {
-  brightnessctl s +10%
+  if command -v brightnessctl &> /dev/null; then
+    brightnessctl s +10%
+  elif command -v xbacklight &> /dev/null; then
+    xbacklight -inc 10
+  else
+    echo "No suitable backlight control command found."
+    exit 1
+  fi
   show_notification "Brightness Increased" "$(get_brightness_icon)" "$(get_brightness_percentage)"
 }
 
 # Function to decrease brightness
 decrease_brightness() {
-  brightnessctl s 10%-
+  if command -v brightnessctl &> /dev/null; then
+    brightnessctl s 10%-
+  elif command -v xbacklight &> /dev/null; then
+    xbacklight -dec 10
+  else
+    echo "No suitable backlight control command found."
+    exit 1
+  fi
   show_notification "Brightness Decreased" "$(get_brightness_icon)" "$(get_brightness_percentage)"
 }
 
@@ -22,8 +36,8 @@ show_notification() {
 
 # Function to get the appropriate brightness icon
 get_brightness_icon() {
-  brightness=$(brightnessctl g)
-  max_brightness=$(brightnessctl m)
+  brightness=$(get_brightness)
+  max_brightness=$(get_max_brightness)
   percentage=$(( brightness * 100 / max_brightness ))
 
   if (( percentage >= 90 )); then
@@ -41,12 +55,28 @@ get_brightness_icon() {
   fi
 }
 
-# Function to get the brightness percentage
-get_brightness_percentage() {
-  brightness=$(brightnessctl g)
-  max_brightness=$(brightnessctl m)
-  percentage=$(( brightness * 100 / max_brightness ))
-  echo "$percentage%"
+# Function to get the current brightness
+get_brightness() {
+  if command -v brightnessctl &> /dev/null; then
+    brightnessctl g
+  elif command -v xbacklight &> /dev/null; then
+    xbacklight -get
+  else
+    echo "No suitable backlight control command found."
+    exit 1
+  fi
+}
+
+# Function to get the maximum brightness
+get_max_brightness() {
+  if command -v brightnessctl &> /dev/null; then
+    brightnessctl m
+  elif command -v xbacklight &> /dev/null; then
+    xbacklight -get | awk '{print $NF}'
+  else
+    echo "No suitable backlight control command found."
+    exit 1
+  fi
 }
 
 # Parse the script arguments

@@ -1,26 +1,28 @@
 #!/bin/bash
 
+# Function to get battery percentage for a given battery name
+get_battery_percentage() {
+    local battery_name="$1"
+    local battery_file="/sys/class/power_supply/$battery_name/capacity"
+    
+    if [ -f "$battery_file" ]; then
+        local percentage=$(cat "$battery_file")
+        echo "$percentage%"
+    else
+        echo "N/A"
+    fi
+}
+
 # Fetch and format system status information
 cpu_usage=$(top -bn1 | awk 'NR>7{s+=$9} END {printf "%.2f%%", s}')
 memory_usage=$(free | awk 'NR==2{printf "%.2f%%", $3*100/$2}')
 disk_usage=$(df -h --output=pcent / | awk 'NR==2')
 uptime=$(uptime -p)
 current_time=$(date +"%r")
-battery_percentage=""
 
-# Detect the battery percentage file based on the system
-battery_file=""
-for file in "/sys/class/power_supply"/BAT*; do
-    if [ -f "$file/capacity" ]; then
-        battery_file="$file/capacity"
-        break
-    fi
-done
-
-# Read battery percentage if the file exists
-if [ -n "$battery_file" ]; then
-    battery_percentage=$(cat "$battery_file")
-fi
+# Get battery percentages for BAT0 and BAT1
+battery_percentage_BAT0=$(get_battery_percentage "BAT0")
+battery_percentage_BAT1=$(get_battery_percentage "BAT1")
 
 # Get Wi-Fi SSID
 wifi_ssid=$(nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes" {print $2}')
@@ -38,17 +40,8 @@ time_glyph=$(echo -e "\ue017") # Clock icon
 wifi_glyph=$(echo -e "\uf1eb") # Wi-Fi icon
 ethernet_glyph=$(echo -e "\uf796") # Ethernet icon
 
-# Build the status message with glyphs
-message="$cpu_glyph  CPU Usage: $cpu_usage\n$memory_glyph  Memory Usage: $memory_usage\n$disk_glyph  Disk Usage: $disk_usage\n$uptime_glyph  Uptime: $uptime\n$time_glyph Time: $current_time"
-if [ -n "$battery_percentage" ]; then
-    message="$message\n$battery_glyph  Battery Percentage: $battery_percentage%"
-fi
-if [ -n "$wifi_ssid" ]; then
-    message="$message\n$wifi_glyph  Wi-Fi SSID: $wifi_ssid"
-fi
-if [ -n "$ethernet_name" ]; then
-    message="$message\n$ethernet_glyph  Ethernet: $ethernet_name"
-fi
+# Build the status message with battery percentages
+message="$cpu_glyph  CPU Usage: $cpu_usage\n$memory_glyph  Memory Usage: $memory_usage\n$disk_glyph  Disk Usage: $disk_usage\n$uptime_glyph  Uptime: $uptime\n$time_glyph Time: $current_time\n$battery_glyph  Battery Percentage (BAT0): $battery_percentage_BAT0\n$battery_glyph  Battery Percentage (BAT1): $battery_percentage_BAT1"
 
 # Display the status message using Rofi with the provided theme
 echo -e "$message" | rofi -show -theme ~/.config/herbstluftwm/rofi/themes/shortcut.rasi -dmenu -p "System Status" >/dev/null 2>&1

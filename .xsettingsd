@@ -1,7 +1,7 @@
 
 Net/ThemeName "decay"
 Net/IconThemeName "ePapirus-Dark"
-Gtk/CursorThemeName "xdecay"
+Gtk/CursorThemeName "Xcursor-Pro-Decay"
 Net/EnableEventSounds "0"
 Net/EnableInputFeedbackSounds "0"
 Xft/DPI "-1"

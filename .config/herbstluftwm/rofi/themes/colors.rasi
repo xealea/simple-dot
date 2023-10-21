@@ -2,10 +2,11 @@
 
 * {
 	background:			#101419;
-	background-alt:			#101419;
+	background-alt:			#1f2329;
 	foreground:			#b6beca;
-	selected:			#1f2329;
-	urgent:				#8cc1ff;
+	selected:			#8cc1ff;
+	urgent:				#1f2329;
+	highlight:			#8cc1ff;
 	on:				#87A181;
 	off:				#D88B9F;
 }

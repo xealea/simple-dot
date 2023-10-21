@@ -19,9 +19,9 @@ decrease_volume() {
 toggle_mute_volume() {
   pactl set-sink-mute @DEFAULT_SINK@ toggle
   if is_volume_muted; then
-    show_notification "Volume Muted" "audio-volume-muted-symbolic" "Muted"
+    show_notification "Volume" "audio-volume-muted-symbolic" "Muted"
   else
-    show_notification "Volume Unmuted" "$(get_volume_icon)" "$(get_volume_percentage)"
+    show_notification "Volume" "$(get_volume_icon)" "$(get_volume_percentage)"
   fi
 }
 
@@ -29,9 +29,9 @@ toggle_mute_volume() {
 toggle_microphone() {
   pactl set-source-mute @DEFAULT_SOURCE@ toggle
   if is_microphone_muted; then
-    show_notification "Microphone Muted" "microphone-sensitivity-muted-symbolic" "Muted"
+    show_notification "Microphone" "microphone-sensitivity-muted-symbolic" "Muted"
   else
-    show_notification "Microphone Unmuted" "microphone-sensitivity-high-symbolic" "Unmuted"
+    show_notification "Microphone" "microphone-sensitivity-high-symbolic" "Unmuted"
   fi
 }
 

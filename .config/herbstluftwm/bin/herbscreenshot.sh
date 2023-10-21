@@ -52,7 +52,7 @@ countdown() {
 convert_image() {
   convert "$1" \
     \( +clone -background black -shadow 25x30+0+0 \) \
-    +swap -background '#637e92' -layers merge \
+    +swap -background '#b6beca' -layers merge \
     "${dir}/${file}"
 }
 

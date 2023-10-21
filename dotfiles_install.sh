@@ -77,6 +77,7 @@ calculate_size() {
 echo "Folder/File sizes:"
 echo "------------------"
 calculate_size "$destination"
+calculate_size "$destination/misc"
 calculate_size "$destination/.config"
 calculate_size "$destination/.fehbg"
 calculate_size "$destination/.fonts"

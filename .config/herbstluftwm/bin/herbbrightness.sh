@@ -50,7 +50,7 @@ get_brightness_icon() {
     echo "$HOME/.icons/ePapirus-Dark/symbolic/status/display-brightness-low-symbolic.svg"
   else
     echo "$HOME/.icons/ePapirus-Dark/symbolic/status/display-brightness-off-symbolic.svg"
-  }
+  fi
 }
 
 # Function to get the current brightness percentage
@@ -62,7 +62,7 @@ get_brightness_percentage() {
   else {
     echo "No suitable backlight control command found."
     exit 1
-  }
+  fi
 }
 
 # Parse the script arguments

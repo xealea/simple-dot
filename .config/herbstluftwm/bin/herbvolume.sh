@@ -22,7 +22,7 @@ toggle_mute_volume() {
     show_notification "Volume Muted" "audio-volume-muted-symbolic" "Muted"
   else
     show_notification "Volume Unmuted" "$(get_volume_icon)" "$(get_volume_percentage)"
-  }
+  fi
 }
 
 # Function to toggle microphone mute
@@ -32,7 +32,7 @@ toggle_microphone() {
     show_notification "Microphone Muted" "microphone-sensitivity-muted-symbolic" "Muted"
   else
     show_notification "Microphone Unmuted" "microphone-sensitivity-high-symbolic" "Unmuted"
-  }
+  fi
 }
 
 # Function to check if the volume is muted
@@ -69,7 +69,7 @@ get_volume_icon() {
     else
       echo "audio-volume-muted-symbolic"
     fi
-  }
+  fi
 }
 
 # Function to get the volume percentage

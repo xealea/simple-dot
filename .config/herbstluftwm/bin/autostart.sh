@@ -35,5 +35,8 @@ $herbdunst &
 herbxlock="$herbst_scripts/herbxss.sh"
 $herbxlock &
 
+# Pipewire
+dbus-run-session pipewire &
+
 # Start mpd
 exec mpd &

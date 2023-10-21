@@ -8,13 +8,13 @@ list_services() {
 # Function to enable a service
 enable_service() {
     service="$1"
-    sv up "/var/service/$service"
+    ln -s "/etc/sv/$service /var/service"
 }
 
 # Function to disable a service
 disable_service() {
     service="$1"
-    sv down "/var/service/$service"
+    rm "/var/service/$service"
 }
 
 # Main menu

@@ -1,11 +1,11 @@
 /* Copyright (C) 2023 Lea <xealea@proton.me> */
 
 * {
-	background:			#11131e;
-	background-alt:			#242D35;
-	foreground:			#cdcfdf;
-	selected:			#FFFFFF;
-	urgent:				#E06C75;
-	on:					#87A181;
+	background:			#101419;
+	background-alt:			#101419;
+	foreground:			#b6beca;
+	selected:			#1f2329;
+	urgent:				#8cc1ff;
+	on:				#87A181;
 	off:				#D88B9F;
 }

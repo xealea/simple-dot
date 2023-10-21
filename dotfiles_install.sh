@@ -110,28 +110,37 @@ if [[ "$confirm" = "y" ]]; then
 
     # Remove the tar.xz file
     rm "$HOME/.fonts/glyph-font.tar.xz"
-    echo "glyph-font.tar.xz deleted."
+    echo "glyph-font binary deleted."
     echo ""
 
     # Extract GTK theme from $HOME/.themes directory
     echo "Extracting GTK theme..."
-    tar -xf "$HOME/.themes/amarena-gtk.tar.xz" -C "$HOME/.themes"
-
+    tar -xf "$HOME/.themes/decay.tar.xz" -C "$HOME/.themes"
     echo "GTK theme extracted."
 
     # Remove the tar.xz file
-    rm "$HOME/.themes/amarena-gtk.tar.xz"
-    echo "amarena-gtk.tar.xz deleted."
+    rm "$HOME/.themes/decay.tar.xz"
+    echo "decay binary deleted."
     echo ""
 
     # Extract icons from $HOME/.icons directory
     echo "Extracting icons..."
-    tar -xf "$HOME/.icons/amarena-icons.tar.xz" -C "$HOME/.icons"
+    tar -xf "$HOME/.icons/adecay.tar.xz" -C "$HOME/.icons"
     echo "Icons extracted."
 
     # Remove the tar.xz file
-    rm "$HOME/.icons/amarena-icons.tar.xz"
-    echo "amarena-icons.tar.xz deleted."
+    rm "$HOME/.icons/adecay.tar.xz"
+    echo "icons binary deleted."
+    echo ""
+
+    # Extract icons from $HOME/.icons directory
+    echo "Extracting icons..."
+    tar -xf "$HOME/.icons/xdecay.tar.xz" -C "$HOME/.icons"
+    echo "cursor extracted."
+
+    # Remove the tar.xz file
+    rm "$HOME/.icons/xdecay.tar.xz"
+    echo "cursor binary deleted."
     echo ""
 
     # Prompt to refresh font cache

@@ -1,7 +1,7 @@
 
-Net/ThemeName "amarena"
+Net/ThemeName "decay"
 Net/IconThemeName "ePapirus-Dark"
-Gtk/CursorThemeName "material-light"
+Gtk/CursorThemeName "xdecay"
 Net/EnableEventSounds "0"
 Net/EnableInputFeedbackSounds "0"
 Xft/DPI "-1"

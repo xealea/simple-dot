@@ -40,3 +40,8 @@ dbus-run-session pipewire &
 
 # Start mpd
 exec mpd &
+
+# Some env
+export WAYLAND_DISPLAY=wayland-0
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORMTHEME=qt5ct

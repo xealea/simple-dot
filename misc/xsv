@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Function to display the list of services
+list_services() {
+    svstat /var/service/*
+}
+
+# Function to enable a service
+enable_service() {
+    service="$1"
+    sv up "/var/service/$service"
+}
+
+# Function to disable a service
+disable_service() {
+    service="$1"
+    sv down "/var/service/$service"
+}
+
+# Main menu
+while true; do
+    clear
+    echo "Service Management Script"
+    echo "1. List Services"
+    echo "2. Enable Service"
+    echo "3. Disable Service"
+    echo "4. Quit"
+    read -e -i "" -p "Select an option: " option
+
+    case $option in
+        1)
+            list_services
+            ;;
+        2)
+            read -e -i "" -p "Enter the service to enable: " service_to_enable
+            enable_service "$service_to_enable"
+            ;;
+        3)
+            read -e -i "" -p "Enter the service to disable: " service_to_disable
+            disable_service "$service_to_disable"
+            ;;
+        4)
+            break
+            ;;
+        *)
+            echo "Invalid option"
+            ;;
+    esac
+
+    read -p "Press Enter to continue..."
+done

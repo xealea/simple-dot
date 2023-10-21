@@ -7,7 +7,7 @@
 _ps=(picom dunst ksuperkey mpd xfce-polkit xfce4-power-manager)
 for _prs in "${_ps[@]}"; do
 	if [[ `pidof ${_prs}` ]]; then
-		killall -9 ${_prs}
+		pkill ${_prs}
 	fi
 done
 

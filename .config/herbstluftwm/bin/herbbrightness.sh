@@ -1,12 +1,9 @@
 #!/bin/bash
 
-# Script by Lea
-# Email: xealea@xedev.my.id
-
 # Function to increase brightness
 increase_brightness() {
   if command -v brightnessctl &> /dev/null; then
-    brightnessctl set +10%
+    sudo brightnessctl s +10%
   elif command -v xbacklight &> /dev/null; then
     xbacklight +10
   else
@@ -19,7 +16,7 @@ increase_brightness() {
 # Function to decrease brightness
 decrease_brightness() {
   if command -v brightnessctl &> /dev/null; then
-    brightnessctl set 10%-
+    sudo brightnessctl s 10%-
   elif command -v xbacklight &> /dev/null; then
     xbacklight -10
   else
@@ -37,7 +34,7 @@ show_notification() {
 # Function to get the appropriate brightness icon
 get_brightness_icon() {
   brightness=$(get_brightness_percentage)
-  
+
   if (( brightness >= 90 )); then
     echo "$HOME/.icons/ePapirus-Dark/symbolic/status/display-brightness-high-symbolic.svg"
   elif (( brightness >= 70 )); then
@@ -56,10 +53,10 @@ get_brightness_icon() {
 # Function to get the current brightness percentage
 get_brightness_percentage() {
   if command -v brightnessctl &> /dev/null; then
-    brightnessctl --get
+    brightnessctl get
   elif command -v xbacklight &> /dev/null; then
     xbacklight -get | awk '{print int($1)}'
-  else {
+  else
     echo "No suitable backlight control command found."
     exit 1
   fi
@@ -80,3 +77,4 @@ case "$1" in
 esac
 
 exit 0
+

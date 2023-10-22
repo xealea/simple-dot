@@ -41,6 +41,7 @@ This list provides instructions for installing the following packages on differe
 - ranger
 - rofi
 - rsync
+- starship
 - tar
 - thunar
 - unzip

@@ -2,31 +2,37 @@
 
 # Function to enable a service
 enable_service() {
-  if [ -e "/etc/sv/$1" ]; then
-    ln -s /etc/sv/"$1" /var/service/
-    echo "Enabled service: $1"
-  else
-    echo "Service $1 not found."
-  fi
+  for service_name in "$@"; do
+    if [ -e "/etc/sv/$service_name" ]; then
+      ln -s /etc/sv/"$service_name" /var/service/
+      echo "Enabled service: $service_name"
+    else
+      echo "Service $service_name not found."
+    fi
+  done
 }
 
 # Function to disable a service
 disable_service() {
-  if [ -L "/var/service/$1" ]; then
-    rm /var/service/"$1"
-    echo "Disabled service: $1"
-  else
-    echo "Service $1 is not enabled."
-  fi
+  for service_name in "$@"; do
+    if [ -L "/var/service/$service_name" ]; then
+      rm /var/service/"$service_name"
+      echo "Disabled service: $service_name"
+    else
+      echo "Service $service_name is not enabled."
+    fi
+  done
 }
 
 # Function to show the status of a service
 show_status() {
-  if [ -L "/var/service/$1" ]; then
-    echo "Service $1 is enabled."
-  else
-    echo "Service $1 is disabled."
-  fi
+  for service_name in "$@"; do
+    if [ -L "/var/service/$service_name" ]; then
+      echo "Service $service_name is enabled."
+    else
+      echo "Service $service_name is disabled."
+    fi
+  done
 }
 
 # Function to list all services
@@ -44,22 +50,24 @@ list_services() {
 # Main script
 case "$1" in
   "enable")
-    enable_service "$2"
+    shift
+    enable_service "$@"
     ;;
   "disable")
-    disable_service "$2"
+    shift
+    disable_service "$@"
     ;;
   "status")
-    show_status "$2"
+    shift
+    show_status "$@"
     ;;
   "list")
     list_services
     ;;
   *)
-    echo "Usage: $0 {enable|disable|status|list} [service_name]"
+    echo "Usage: $0 {enable|disable|status|list} [service_name1] [service_name2] ..."
     exit 1
     ;;
 esac
 
 exit 0
-

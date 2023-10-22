@@ -155,7 +155,7 @@ if [[ "$confirm" = "y" ]]; then
     echo ""
 
     # Prompt to refresh font cache
-    read -p "Do you want to change the shell? (y/n) " shell
+    read -p "Do you want to change the shell to startship fish? (y/n) " shell
     if [[ "$shell" = "y" ]]; then
         # Set shell to fish shell
         echo "Setting the shell to fish shell..."

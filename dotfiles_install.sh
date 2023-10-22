@@ -167,6 +167,7 @@ if [[ "$confirm" = "y" ]]; then
         echo "Setting the shell to fish shell..."
         chsh -s "$(command -v fish)"
     fi
+    echo ""
 
     # Prompt to run the SDDM theme installer
     read -p "Do you want to run the SDDM theme installer? (y/n) " theme_installer

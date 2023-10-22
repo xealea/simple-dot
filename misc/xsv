@@ -1,51 +1,65 @@
-#!/bin/bash
-
-# Function to display the list of services
-list_services() {
-    svstat /var/service/*
-}
+#!/bin/sh
 
 # Function to enable a service
 enable_service() {
-    service="$1"
-    ln -s "/etc/sv/$service" "/var/service"
+  if [ -e "/etc/sv/$1" ]; then
+    ln -s /etc/sv/"$1" /var/service/
+    echo "Enabled service: $1"
+  else
+    echo "Service $1 not found."
+  fi
 }
 
 # Function to disable a service
 disable_service() {
-    service="$1"
-    rm "/var/service/$service"
+  if [ -L "/var/service/$1" ]; then
+    rm /var/service/"$1"
+    echo "Disabled service: $1"
+  else
+    echo "Service $1 is not enabled."
+  fi
 }
 
-# Main menu
-while true; do
-    clear
-    echo "Service Management Script"
-    echo "1. List Services"
-    echo "2. Enable Service"
-    echo "3. Disable Service"
-    echo "4. Quit"
-    read -e -i "" -p "Select an option: " option
+# Function to show the status of a service
+show_status() {
+  if [ -L "/var/service/$1" ]; then
+    echo "Service $1 is enabled."
+  else
+    echo "Service $1 is disabled."
+  fi
+}
 
-    case $option in
-        1)
-            list_services
-            ;;
-        2)
-            read -e -i "" -p "Enter the service to enable: " service_to_enable
-            enable_service "$service_to_enable"
-            ;;
-        3)
-            read -e -i "" -p "Enter the service to disable: " service_to_disable
-            disable_service "$service_to_disable"
-            ;;
-        4)
-            break
-            ;;
-        *)
-            echo "Invalid option"
-            ;;
-    esac
+# Function to list all services
+list_services() {
+  for service in /etc/sv/*; do
+    service_name=$(basename "$service")
+    if [ -L "/var/service/$service_name" ]; then
+      echo "Service $service_name is enabled."
+    else
+      echo "Service $service_name is disabled."
+    fi
+  done
+}
 
-    read -p "Press Enter to continue..."
-done
+# Main script
+case "$1" in
+  "enable")
+    enable_service "$2"
+    ;;
+  "disable")
+    disable_service "$2"
+    ;;
+  "status")
+    show_status "$2"
+    ;;
+  "list")
+    list_services
+    ;;
+  *)
+    echo "Usage: $0 {enable|disable|status|list} [service_name]"
+    exit 1
+    ;;
+esac
+
+exit 0
+

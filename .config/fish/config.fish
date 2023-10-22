@@ -14,7 +14,6 @@ eval (starship init fish)
 
 # Awesome Alias
 ## System commands
-alias ls 'ls --color=auto'
 alias tarnow 'tar -acf'
 alias untar 'tar -zxvf'
 alias wget 'wget -c'
@@ -31,13 +30,6 @@ alias grep 'grep --color=auto'
 alias fgrep 'fgrep --color=auto'
 alias egrep 'egrep --color=auto'
 alias diff 'diff --color=auto'
-
-# Improved commands
-alias ls 'lsd --group-dirs first'
-alias lt 'lsd --tree'
-alias top 'htop'
-alias cat 'bat --pager=never --theme=ansi'
-alias catf 'bat --theme=ansi'
 
 # Clear vkpurge alias
 function clrk

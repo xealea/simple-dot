@@ -26,6 +26,12 @@ update_repository() {
     git pull
 }
 
+# Function to run the SDDM theme installer
+run_sddm_theme_installer() {
+    echo "Running SDDM theme installer..."
+    wget https://raw.githubusercontent.com/xealea/simple-dot/master/install-sddm-theme.sh -O $HOME/install-sddm-theme.sh && bash $HOME/install-sddm-theme.sh
+}
+
 # Display greeting message
 echo "Hello there! These dotfiles are made by @Lea."
 echo "You are now in the installation step."
@@ -96,7 +102,7 @@ if [[ "$confirm" = "y" ]]; then
 
     # Place the LICENSE file in $HOME/.config directory
     cp "$HOME/LICENSE" "$HOME/.config/LICENSE-SIMPLE-DOT"
-    
+
     # Set Nemo default terminal to Alacritty
     gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
 
@@ -162,8 +168,15 @@ if [[ "$confirm" = "y" ]]; then
         chsh -s "$(command -v fish)"
     fi
 
+    # Prompt to run the SDDM theme installer
+    read -p "Do you want to run the SDDM theme installer? (y/n) " theme_installer
+    if [[ "$theme_installer" = "y" ]]; then
+        run_sddm_theme_installer
+    fi
+
     echo "Installation completed!"
 else
     echo "Installation aborted. Exiting..."
     exit 0
 fi
+

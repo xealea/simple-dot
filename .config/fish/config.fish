@@ -14,7 +14,6 @@ eval (starship init fish)
 
 # Awesome Alias
 ## System commands
-alias _ 'sudo'
 alias ls 'ls --color=auto'
 alias tarnow 'tar -acf'
 alias untar 'tar -zxvf'

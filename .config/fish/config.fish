@@ -5,7 +5,7 @@ end
 # glyph
 function fish_prompt
     set -g fish_color_cwd blue
-    printf '%s%s ' (set_color $fish_color_cwd) 󱜯
+    printf '%s%s ' (set_color $fish_color_cwd)  
 end
 
 set -g fish_greeting ""

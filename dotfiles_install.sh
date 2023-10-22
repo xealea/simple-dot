@@ -84,7 +84,7 @@ calculate_size "$destination/.fonts"
 calculate_size "$destination/.icons"
 calculate_size "$destination/.themes"
 calculate_size "$destination/.wall"
-calculate_size "$destination/.xsettingsd"
+calculate_size "$destination/.gtkrc-2.0"
 
 # Prompt for confirmation to continue
 read -p "Do you want to copy the dotfiles? (y/n) " confirm

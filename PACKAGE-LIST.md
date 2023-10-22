@@ -33,6 +33,7 @@ This list provides instructions for installing the following packages on differe
 - neovim
 - nemo
 - networkmanager
+- nwg-look
 - pavucontrol
 - pipewire
 - polkitd

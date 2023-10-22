@@ -3,7 +3,11 @@
 This list provides instructions for installing the following packages on different Linux distributions:
 
 - alacritty
-- brightnessctl
+- aria2
+- alsa-pipewire
+- betterlockscreen
+- brightnessctl/xbacklight
+- bc
 - curl
 - dconf
 - dunst
@@ -17,9 +21,10 @@ This list provides instructions for installing the following packages on differe
 - gvfs
 - herbstluftwm
 - hsetroot
+- imagemagick
 - ksuperkey
 - kvantum
-- lightdm
+- sddm
 - maim
 - mpd
 - mpc
@@ -29,16 +34,16 @@ This list provides instructions for installing the following packages on differe
 - nemo
 - networkmanager
 - pavucontrol
-- pamixer
-- pulseaudio
-- pulseaudio-alsa
-- pulseaudio-jack
+- pipewire
+- polkitd
 - qt5ct
+- qt6ct
 - ranger
 - rofi
 - rsync
 - tar
 - thunar
+- unzip
 - viewnior
 - wget
 - xcolor
@@ -48,3 +53,17 @@ This list provides instructions for installing the following packages on differe
 - xfce4-power-manager
 - xfce4-settings
 - xorg-server
+- xz
+- zip
+
+# Package CPU intel
+
+- intel-ucode ( voidpkg )
+- intel-undervolt
+- xf86
+
+# Repo void
+
+- void-repo-nonfree
+- void-repo-multilib
+- void-repo-multilib-nonfree

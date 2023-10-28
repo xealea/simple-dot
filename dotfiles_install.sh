@@ -32,6 +32,12 @@ run_sddm_theme_installer() {
     wget https://raw.githubusercontent.com/xealea/simple-dot/master/install-sddm-theme.sh -O $HOME/install-sddm-theme.sh && bash $HOME/install-sddm-theme.sh
 }
 
+grub_install_now(){
+    echo "Change GRUB theme.."
+    sudo cp -r $HOME/simple-dot/misc/grub /usr/share/
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+}
+
 # Display greeting message
 echo "Hello there! These dotfiles are made by @Lea."
 echo "You are now in the installation step."
@@ -173,6 +179,13 @@ if [[ "$confirm" = "y" ]]; then
     read -p "Do you want to run the SDDM theme installer? (y/n) " theme_installer
     if [[ "$theme_installer" = "y" ]]; then
         run_sddm_theme_installer
+    fi
+    echo ""
+
+    # Prompt to run the SDDM theme installer
+    read -p "Do you want to change the GRUB theme to custom by @xealea? (y/n) " grub_install
+    if [[ "$grub_install" = "y" ]]; then
+        grub_install_now
     fi
 
     echo "Installation completed!"

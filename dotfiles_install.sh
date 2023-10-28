@@ -32,11 +32,28 @@ run_sddm_theme_installer() {
     wget https://raw.githubusercontent.com/xealea/simple-dot/master/install-sddm-theme.sh -O $HOME/install-sddm-theme.sh && bash $HOME/install-sddm-theme.sh
 }
 
-grub_install_now(){
+grub_install_now() {
     echo "Change GRUB theme.."
+
+    # Copy theme first
     sudo cp -r $HOME/simple-dot/misc/grub /usr/share/
+    
+    # Define the desired GRUB_THEME line
+    new_grub_theme='GRUB_THEME="/usr/share/grub/themes/simpleboot/theme.txt"'
+    
+    # Temporarily store the contents of /etc/default/grub
+    current_grub_contents=$(cat /etc/default/grub)
+    
+    # Check if the line already exists in the file, if not, add it
+    if [[ $current_grub_contents != *"$new_grub_theme"* ]]; then
+        # Append the new GRUB_THEME line to /etc/default/grub
+        echo "$new_grub_theme" | sudo tee -a /etc/default/grub
+    fi
+
+    # Regenerate the GRUB configuration
     sudo grub-mkconfig -o /boot/grub/grub.cfg
 }
+
 
 # Display greeting message
 echo "Hello there! These dotfiles are made by @Lea."

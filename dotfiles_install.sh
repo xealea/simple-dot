@@ -131,6 +131,7 @@ calculate_size "$destination/.fonts"
 calculate_size "$destination/.icons"
 calculate_size "$destination/.themes"
 calculate_size "$destination/.wall"
+calculate_size "$destination/.nanorc"
 calculate_size "$destination/.gtkrc-2.0"
 
 # Prompt for confirmation to continue

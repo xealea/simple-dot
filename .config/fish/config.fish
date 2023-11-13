@@ -2,12 +2,6 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# glyph
-function fish_prompt
-    set -g fish_color_cwd blue
-    printf '%s%s ' (set_color $fish_color_cwd)  
-end
-
 set -g fish_greeting ""
 
 eval (starship init fish)
@@ -66,6 +60,20 @@ alias no 'nix-env --rollback'
 alias ncl 'nix-channel --list'
 alias nca 'nix-channel --add'
 alias ncu 'nix-channel --update'
+
+# Arch
+alias pacs 'sudo pacman -Syu'
+alias paci 'sudo pacman -S'
+alias pacr 'sudo pacman -Rs'
+alias pacq 'pacman -Q'
+alias pacinfo 'pacman -Qi'
+alias pacfiles 'pacman -Ql'
+alias paruup 'paru -Syu'
+alias parui 'paru -S'
+alias parur 'paru -Rs'
+alias paruq 'paru -Q'
+alias paruinfo 'paru -Qi'
+alias parufiles 'paru -Ql'
 
 # Specials
 alias b 'bleachbit'

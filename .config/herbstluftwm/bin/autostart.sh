@@ -4,10 +4,10 @@
 # Email: xealea@xedev.my.id
 
 # Kill already running processes
-_ps=(picom dunst ksuperkey mpd xfce-polkit xfce4-power-manager)
-for _prs in "${_ps[@]}"; do
-	if [[ `pidof ${_prs}` ]]; then
-		pkill ${_prs}
+processes=("picom" "dunst" "ksuperkey" "mpd" "xfce-polkit" "xfce4-power-manager")
+for process in "${processes[@]}"; do
+	if pidof "$process" > /dev/null; then
+		pkill "$process"
 	fi
 done
 
@@ -24,7 +24,7 @@ xfce4-power-manager &
 ksuperkey -e 'Super_L=Alt_L|F1' && ksuperkey -e 'Super_R=Alt_L|F1' &
 
 # Set/Restore wallpaper
-exec ~/.fehbg &
+~/.fehbg &
 
 # Launch notification daemon, polybar, and compositor
 herbst_scripts=~/.config/herbstluftwm/bin
@@ -39,7 +39,7 @@ $herbxlock &
 dbus-run-session pipewire &
 
 # Start mpd
-exec mpd &
+mpd &
 
 # Some env
 export QT_QPA_PLATFORMTHEME=qt5ct

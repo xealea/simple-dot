@@ -145,11 +145,29 @@ if [[ "$confirm" = "y" ]]; then
     # Place the LICENSE file in $HOME/.config directory
     cp "$HOME/LICENSE" "$HOME/.config/LICENSE-SIMPLE-DOT"
 
-    # Set Nemo default terminal to Alacritty
-    gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
-
     # Display success message
     echo "Copying completed successfully!"
+    echo ""
+
+    # Prompt for Nemo default terminal
+    echo "WARNING!!! IT WILL NOT WORK TO APPLY (y) IF YOU NOT INSTALLING NEMO, SO INSTALL FIRST BEFORE RUN!!"
+    read -p "Set (if use) Nemo file manager default terminal to Alacritty? (y/n) " nemo_terminal_prompt
+    # Set Nemo default terminal to Alacritty if user chooses 'y'
+    if [[ "$nemo_terminal_prompt" = "y" ]]; then
+        gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
+    fi
+    echo ""
+
+    # Prompt for Thunar default terminal
+    echo "WARNING!!! IT WILL NOT WORK TO APPLY (y) IF YOU NOT INSTALLING THUNAR, SO INSTALL FIRST BEFORE RUN!!"
+    read -p "Set (if use) Thunar default terminal to Alacritty? (y/n) " thunar_terminal_prompt
+
+    # Set Thunar default terminal to Alacritty if user chooses 'y'
+    if [[ "$thunar_terminal_prompt" = "y" ]]; then
+        # Assuming Thunar's command to set the default terminal is similar to Nemo
+        # Replace the following line with the appropriate command for Thunar if needed
+        gsettings set org.xfce.Terminal.Settings exec alacritty
+    fi
     echo ""
 
     # Extract Fonts from $HOME/.fonts directory

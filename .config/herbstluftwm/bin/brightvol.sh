@@ -19,25 +19,33 @@ increase_brightness() {
 
 # Decrease speaker volume
 decrease_speaker_volume() {
-  percentage=$(pactl set-sink-volume @DEFAULT_SINK@ 5%- | grep -oP '(\d+)%' | cut -d'%' -f1)
+  pactl set-sink-mute @DEFAULT_SINK@ false # Unmute first
+  pactl set-sink-volume @DEFAULT_SINK@ -5%
+  percentage=$(pactl list sinks | grep 'Volume:' | grep -oP '(\d+)%' | head -n 1)
   show_notification "Speaker volume decreased" "$percentage"
 }
 
 # Increase speaker volume
 increase_speaker_volume() {
-  percentage=$(pactl set-sink-volume @DEFAULT_SINK@ 5%+ | grep -oP '(\d+)%' | cut -d'%' -f1)
+  pactl set-sink-mute @DEFAULT_SINK@ false # Unmute first
+  pactl set-sink-volume @DEFAULT_SINK@ +5%
+  percentage=$(pactl list sinks | grep 'Volume:' | grep -oP '(\d+)%' | head -n 1)
   show_notification "Speaker volume increased" "$percentage"
 }
 
 # Decrease microphone volume
 decrease_mic_volume() {
-  percentage=$(pactl set-source-volume @DEFAULT_SOURCE@ 5%- | grep -oP '(\d+)%' | cut -d'%' -f1)
+  pactl set-source-mute @DEFAULT_SOURCE@ false # Unmute first
+  pactl set-source-volume @DEFAULT_SOURCE@ -5%
+  percentage=$(pactl list sources | grep 'Volume:' | grep -oP '(\d+)%' | head -n 1)
   show_notification "Microphone volume decreased" "$percentage"
 }
 
 # Increase microphone volume
 increase_mic_volume() {
-  percentage=$(pactl set-source-volume @DEFAULT_SOURCE@ 5%+ | grep -oP '(\d+)%' | cut -d'%' -f1)
+  pactl set-source-mute @DEFAULT_SOURCE@ false # Unmute first
+  pactl set-source-volume @DEFAULT_SOURCE@ +5%
+  percentage=$(pactl list sources | grep 'Volume:' | grep -oP '(\d+)%' | head -n 1)
   show_notification "Microphone volume increased" "$percentage"
 }
 
